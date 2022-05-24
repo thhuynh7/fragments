@@ -48,7 +48,7 @@ or using curl with the -i flag to check the HTTP headers sent back by the server
 curl -i localhost:8080
 ```
 
-> Note: You can statically analyze your code to find problems by running the command:
+> Note: You can statically analyze your code to find problems by running the command:+1::
 ```
 npm run lint
 ```
