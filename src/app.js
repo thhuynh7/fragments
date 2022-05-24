@@ -4,8 +4,11 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const compression = require('compression');
+const passport = require('passport');
+const authorization = require('./authorization');
 
 // version and author from our package.json file
+// eslint-disable-next-line no-unused-vars
 const { version, author } = require('../package.json');
 
 const logger = require('./logger');
@@ -29,22 +32,9 @@ app.use(cors());
 // Use gzip/deflate compression middleware
 app.use(compression());
 
-// Define a simple health check route. If the server is running
-// we'll respond with a 200 OK.  If not, the server isn't healthy.
-// app.get('/', (req, res) => {
-//   // Clients shouldn't cache this response (always request it fresh)
-//   // See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching#controlling_caching
-//   res.setHeader('Cache-Control', 'no-cache');
-
-//   // Send a 200 'OK' response with info about our repo
-//   res.status(200).json({
-//     status: 'ok',
-//     author,
-//     // githubUrl: 'https://github.com/humphd/fragments',
-//     githubUrl: 'https://github.com/thhuynh7/fragments',
-//     version,
-//   });
-// });
+// Set up our passport authorization middleware
+passport.use(authorization.strategy());
+app.use(passport.initialize());
 
 // Define our routes
 app.use('/', require('./routes'));
