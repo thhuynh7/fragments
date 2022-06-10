@@ -8,7 +8,8 @@
     "test": "jest -c jest.config.js --runInBand --",
     "coverage": "jest -c jest.config.js --runInBand --coverage",
     "lint": "eslint --config .eslintrc.js src/** tests/**",
-    "start": "cross-env NODE_ENV=production node src/index.js",
+    "start": "node src/index.js",
+    "start:prod": "cross-env NODE_ENV=production node src/index.js",
     "dev": "cross-env LOG_LEVEL=debug nodemon ./src/server.js --watch src",
     "debug": "cross-env LOG_LEVEL=debug nodemon --inspect=0.0.0.0:9229 ./src/server.js --watch src"
   },

@@ -1,5 +1,5 @@
 // src/authorization/index.js
-// prefer .htpasswd file when running in Development mode locally
+// prefer .htpasswd file when running in Development mode locally (i.e., npm run start:prod)
 if (process.env.HTPASSWD_FILE && process.env.NODE_ENV !== 'production') {
   module.exports = require('./basic-auth');
 }
