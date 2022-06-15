@@ -3,7 +3,7 @@
  * Get a list of fragments for the current user
  */
 const { createSuccessResponse } = require('../../../src/response');
-const { createErrorResponse } = require('../../../src/response');
+// const { createErrorResponse } = require('../../../src/response');
 const Fragment = require('../../model/fragment');
 const hash = require('../../hash')
 
