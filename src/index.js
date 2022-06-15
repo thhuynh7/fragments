@@ -1,5 +1,4 @@
 // src/index.js
-
 // Read environment variables from an .env file (if present)
 require('dotenv').config();
 
@@ -23,5 +22,4 @@ process.on('unhandledRejection', (reason, promise) => {
 // Start our server
 require('./server');
 
-// Test ci pipeline
-// const unneededVariable = 'This variable is never used';
+

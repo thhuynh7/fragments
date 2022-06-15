@@ -9,9 +9,6 @@ const hash = require('../../hash')
 
 // module.exports = (req, res) => {
 exports.getFragments = (req, res) => {
-  // TODO: this is just a placeholder to get something working...
-  // const data = { fragments: [] };
-  // const fragments = Fragment.
   const user = hash(req.user);
 
   Fragment.byUser(user, false)
@@ -20,12 +17,6 @@ exports.getFragments = (req, res) => {
       res.status(200).json(createSuccessResponse({ fragments: data }));
     })
     .catch((err) => console.log(err));
-  // const successResponse = createSuccessResponse(data);
-  // res.status(200).json(successResponse);
-  // res.status(200).json({
-  //   status: 'ok',
-  //   fragments: [],
-  // });
 };
 
 exports.getFragmentInfo = (req, res) => {

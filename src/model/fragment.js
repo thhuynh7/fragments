@@ -1,8 +1,5 @@
 // src/model/fragment.js
 
-// const { randomUUID } = require('crypto');
-// const id = randomUUID(); // '30a84843-0cd4-4975-95ba-b96112aea189'
-
 // Use https://www.npmjs.com/package/content-type to create/parse Content-Type headers
 const contentType = require('content-type');
 
@@ -60,7 +57,7 @@ module.exports = class Fragment {
   static delete(ownerId, id) {
     // TODO
     // return Promise.resolve(deleteFragment(ownerId, id))
-    // .then(() => console.log('fragment deleted')/* code here for after it finishes... */);
+    // .then(() => console.log('fragment deleted')/* ... */);
   }
 
   /**
