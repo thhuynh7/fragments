@@ -1,10 +1,7 @@
 // src/model/fragment.js
 
-// Use https://www.npmjs.com/package/nanoid to create unique IDs
-// const { nanoid } = require('nanoid');
-// drop the nanoid dependency and use the new built-in UUID generator from node.js core:
-const { randomUUID } = require('crypto');
-const id = randomUUID(); // '30a84843-0cd4-4975-95ba-b96112aea189'
+// const { randomUUID } = require('crypto');
+// const id = randomUUID(); // '30a84843-0cd4-4975-95ba-b96112aea189'
 
 // Use https://www.npmjs.com/package/content-type to create/parse Content-Type headers
 const contentType = require('content-type');

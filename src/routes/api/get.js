@@ -5,15 +5,16 @@
 const { createSuccessResponse } = require('../../../src/response');
 const { createErrorResponse } = require('../../../src/response');
 const Fragment = require('../../model/fragment');
+const hash = require('../../hash')
 
 // module.exports = (req, res) => {
 exports.getFragments = (req, res) => {
   // TODO: this is just a placeholder to get something working...
   // const data = { fragments: [] };
   // const fragments = Fragment.
-  // const user = req.user;
+  const user = hash(req.user);
 
-  Fragment.byUser(req.user, false)
+  Fragment.byUser(user, false)
     .then((data) => {
       console.log(data);
       res.status(200).json(createSuccessResponse({ fragments: data }));
@@ -29,8 +30,9 @@ exports.getFragments = (req, res) => {
 
 exports.getFragmentInfo = (req, res) => {
   const id = req.params.id;
+  const user = hash(req.user);
 
-  Fragment.byId(req.user, id)
+  Fragment.byId(user, id)
     .then((data) => {
       console.log(id);
       console.log(data);
@@ -41,9 +43,10 @@ exports.getFragmentInfo = (req, res) => {
 
 exports.getFragmentData = (req, res) => {
   const id = req.params.id;
+  const user = hash(req.user);
   let fragment;
 
-  Fragment.byId(req.user, id)
+  Fragment.byId(user, id)
     .then((metadata) => {
       fragment = new Fragment(metadata);
       fragment.getData().then((buffer) => {

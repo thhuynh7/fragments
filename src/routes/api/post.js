@@ -5,15 +5,13 @@
 const { randomUUID } = require('crypto');
 const { createSuccessResponse } = require('../../../src/response');
 const Fragment = require('../../model/fragment');
+const hash = require('../../../src/hash');
 
 // module.exports = (req, res) => {
 module.exports = (req, res) => {
   const id = randomUUID();
-  // const test = req.params.id;
-  // console.log(test)
-
-  // const id = 'abc';
-  const ownerId = req.user;
+  // const ownerId = req.user;
+  const ownerId = hash(req.user);
   const created = JSON.stringify(new Date());
   const updated = JSON.stringify(new Date());
   const type = 'text/plain';
