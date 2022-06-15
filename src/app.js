@@ -1,6 +1,8 @@
 // src/app.js
 
 const express = require('express');
+const bodyParser = require('body-parser');
+
 const cors = require('cors');
 const helmet = require('helmet');
 const compression = require('compression');
@@ -38,6 +40,8 @@ app.use(compression());
 // Set up our passport authorization middleware
 passport.use(authorization.strategy());
 app.use(passport.initialize());
+
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // Define our routes
 app.use('/', require('./routes'));
