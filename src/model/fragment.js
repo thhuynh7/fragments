@@ -10,7 +10,7 @@ const {
   readFragmentData,
   writeFragmentData,
   listFragments,
-  deleteFragment,
+  // deleteFragment,
 } = require('./data');
 
 module.exports = class Fragment {
@@ -54,11 +54,11 @@ module.exports = class Fragment {
    * @param {string} id fragment's id
    * @returns Promise
    */
-  static delete(ownerId, id) {
-    // TODO
-    // return Promise.resolve(deleteFragment(ownerId, id))
-    // .then(() => console.log('fragment deleted')/* ... */);
-  }
+  // static delete(ownerId, id) {
+  //   // TODO
+  //   // return Promise.resolve(deleteFragment(ownerId, id))
+  //   // .then(() => console.log('fragment deleted')/* ... */);
+  // }
 
   /**
    * Saves the current fragment to the database
@@ -106,17 +106,17 @@ module.exports = class Fragment {
    * Returns true if this fragment is a text/* mime type
    * @returns {boolean} true if fragment's type is text/*
    */
-  get isText() {
-    // TODO
-  }
+  // get isText() {
+  //   // TODO
+  // }
 
   /**
    * Returns the formats into which this fragment type can be converted
    * @returns {Array<string>} list of supported mime types
    */
-  get formats() {
-    // TODO
-  }
+  // get formats() {
+  //   // TODO
+  // }
 
   /**
    * Returns true if we know how to work with this content type
