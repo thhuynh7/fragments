@@ -1,36 +1,49 @@
-# define Docker instructions to build an image of the Fragments service
-FROM node:16.13.0
+# Stage 0: Install alpine Linux + node + dependencies
+FROM node:16.14-alpine@sha256:2c6c59cf4d34d4f937ddfcf33bab9d8bbad8658d1b9de7b97622566a52167f2b AS dependencies
 
 LABEL maintainer="Thai Huynh <thhuynh7@myseneca.ca>"
 LABEL description="Fragments node.js microservice"
 
 # We default to use port 8080 in our service
 ENV PORT=8080
-
 # Reduce npm spam when installing within Docker
 # https://docs.npmjs.com/cli/v8/using-npm/config#loglevel
 ENV NPM_CONFIG_LOGLEVEL=warn
-
 # Disable colour when run inside Docker
 # https://docs.npmjs.com/cli/v8/using-npm/config#color
 ENV NPM_CONFIG_COLOR=false
 
+ENV NODE_ENV=production
+
 # Use /app as our working directory
 WORKDIR /app
 
-# Copy the package.json and package-lock.json files into /app
-# COPY package*.json /app/
+# Copy dep files 
 COPY package*.json ./
 
-# Install node dependencies defined in package-lock.json
-RUN npm install
+# Install production dependencies
+RUN npm ci -only=production
 
-# Copy src to /app/src/
+#######################################################################
+
+# Stage 1: use dependencies to start the container by running our server
+FROM node:16.14-alpine@sha256:2c6c59cf4d34d4f937ddfcf33bab9d8bbad8658d1b9de7b97622566a52167f2b AS deploy
+
+WORKDIR /app
+# Copy cached dependencies from previous stage so we don't have to download
+COPY --from=dependencies /app /app
+# Copy source code into the image 
 COPY ./src ./src
 # Copy our HTPASSWD file
 COPY ./tests/.htpasswd ./tests/.htpasswd
+
+# add the installation instruction for curl since node:alpine image doesn't come with curl
+RUN apk --no-cache add curl
 
 # Start the container by running our server
 CMD npm start
 # We run our service on port 8080
 EXPOSE 8080
+
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
+  CMD curl --fail localhost:8080 || exit 1
