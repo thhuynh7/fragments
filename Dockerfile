@@ -40,9 +40,8 @@ COPY ./tests/.htpasswd ./tests/.htpasswd
 # add the installation instruction for curl since node:alpine image doesn't come with curl
 RUN apk --no-cache add curl
 
-# Start the container by running our server
-# CMD npm start
-# Use node vs. npm to start it in Docker so you save the extra process invocation
+# Start the container by running our server 
+# Use node vs. 'CMD npm start' to save the extra process invocation
 CMD node src/index.js
 
 # We run our service on port 8080
