@@ -41,7 +41,10 @@ COPY ./tests/.htpasswd ./tests/.htpasswd
 RUN apk --no-cache add curl
 
 # Start the container by running our server
-CMD npm start
+# CMD npm start
+# Use node vs. npm to start it in Docker so you save the extra process invocation
+CMD node src/index.js
+
 # We run our service on port 8080
 EXPOSE 8080
 
