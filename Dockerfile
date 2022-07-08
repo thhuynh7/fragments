@@ -38,11 +38,11 @@ COPY ./src ./src
 COPY ./tests/.htpasswd ./tests/.htpasswd
 
 # add the installation instruction for curl since node:alpine image doesn't come with curl
-RUN apk --no-cache add curl
+RUN apk --no-cache add curl=7.84.0
 
 # Start the container by running our server 
-# Use node vs. 'CMD npm start' to save the extra process invocation
-CMD node src/index.js
+# Use 'CMD node src/index.js' vs. 'CMD npm start' to save the extra process invocation
+CMD  ["dumb-init", "node", "src/index.js"]
 
 # We run our service on port 8080
 EXPOSE 8080
