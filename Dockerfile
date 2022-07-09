@@ -39,7 +39,7 @@ COPY ./tests/.htpasswd ./tests/.htpasswd
 
 # add the installation instruction for curl since node:alpine image doesn't come with curl
 # RUN apk --no-cache add curl=7.84.0
-RUN apk --no-cache add curl=7.84
+# RUN apk --no-cache add curl=7.84
 
 # Start the container by running our server 
 # Use 'CMD node src/index.js' vs. 'CMD npm start' to save the extra process invocation
