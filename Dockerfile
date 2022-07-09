@@ -45,7 +45,7 @@ RUN apk --no-cache add curl=7.80.0-r2
 # Start the container by running our server 
 # Use 'CMD node src/index.js' vs. 'CMD npm start' to save the extra process invocation
 # CMD  ["dumb-init", "node", "src/index.js"]
-CMD node src/index.js
+CMD ["node", "src/index.js"]
 
 # We run our service on port 8080
 EXPOSE 8080
