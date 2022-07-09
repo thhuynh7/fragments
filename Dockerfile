@@ -38,7 +38,7 @@ COPY ./src ./src
 COPY ./tests/.htpasswd ./tests/.htpasswd
 
 # add the installation instruction for curl since node:alpine image doesn't come with curl
-# RUN apk --no-cache add curl=7.84.0
+# RUN apk --no-cache add curl
 RUN apk --no-cache add curl=7.80.0-r2
 
 
