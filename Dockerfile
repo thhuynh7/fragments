@@ -29,6 +29,8 @@ RUN npm ci -only=production
 # Stage 1: use dependencies to start the container by running our server
 FROM node:16.14-alpine@sha256:2c6c59cf4d34d4f937ddfcf33bab9d8bbad8658d1b9de7b97622566a52167f2b AS deploy
 
+RUN apk --no-cache add curl=7.79.1
+
 WORKDIR /app
 # Copy cached dependencies from previous stage so we don't have to download
 COPY --from=dependencies /app /app
@@ -39,7 +41,7 @@ COPY ./tests/.htpasswd ./tests/.htpasswd
 
 # add the installation instruction for curl since node:alpine image doesn't come with curl
 # RUN apk --no-cache add curl=7.84.0
-RUN apk --no-cache add curl=7.79.1
+
 
 
 # Start the container by running our server 
