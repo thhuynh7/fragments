@@ -5,7 +5,7 @@
 const { createSuccessResponse } = require('../../../src/response');
 // const { createErrorResponse } = require('../../../src/response');
 const Fragment = require('../../model/fragment');
-const hash = require('../../hash')
+const hash = require('../../hash');
 
 // module.exports = (req, res) => {
 exports.getFragments = (req, res) => {
@@ -40,7 +40,7 @@ exports.getFragmentData = (req, res) => {
   Fragment.byId(user, id)
     .then((metadata) => {
       fragment = new Fragment(metadata);
-      fragment.getData().then((buffer) => {       
+      fragment.getData().then((buffer) => {
         res.header('Content-Type', fragment.type);
         res.status(200).send(buffer);
       });
