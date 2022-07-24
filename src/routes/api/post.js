@@ -16,6 +16,9 @@ module.exports = (req, res) => {
   const type = 'text/plain';
   const size = req.body.toString().length;
 
+  let location = "http://localhost:8080/v1/fragments/";
+  location += id;
+
   const fragment = new Fragment({ id, ownerId, created, updated, type, size });
 
   console.log(fragment);
@@ -23,7 +26,11 @@ module.exports = (req, res) => {
     .save()
     .then(
       fragment.setData(req.body)
-        .then(() => res.status(201).json(createSuccessResponse({ fragments: fragment }))))
+        .then(() => {
+          res.header('Location', location);
+          res.status(201).json(createSuccessResponse({ fragment: fragment }));}
+        
+        ))
     .then(
       fragment.getData().then((buffer) => {
         console.log(buffer.toString());
