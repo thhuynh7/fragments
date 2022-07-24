@@ -23,7 +23,7 @@ module.exports = (req, res) => {
     .save()
     .then(
       fragment.setData(req.body)
-        .then(() => res.status(200).json(createSuccessResponse({ fragments: fragment }))))
+        .then(() => res.status(201).json(createSuccessResponse({ fragments: fragment }))))
     .then(
       fragment.getData().then((buffer) => {
         console.log(buffer.toString());
