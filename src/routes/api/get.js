@@ -40,15 +40,8 @@ exports.getFragmentData = (req, res) => {
   Fragment.byId(user, id)
     .then((metadata) => {
       fragment = new Fragment(metadata);
-      fragment.getData().then((buffer) => {
-        // res.setHeader('Cache-Control', 'no-cache');
-       
-        // const data = buffer.toString();
-        // const data = {fragment:buffer.toString()};
-        // const successResponse = createSuccessResponse(data);
-        // res.status(200).json(successResponse);
-        
-        res.header('Content-Type', 'text/plain');
+      fragment.getData().then((buffer) => {       
+        res.header('Content-Type', fragment.type);
         res.status(200).send(buffer);
       });
     })
