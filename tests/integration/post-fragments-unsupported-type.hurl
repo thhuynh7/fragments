@@ -6,7 +6,7 @@ Authorization: Basic dXNlcjFAZW1haWwuY29tOnBhc3N3b3JkMQ==
 Content-Type: mp3
 ```This is a mp3 fragment!```
 
-# 1. We expect to get back an HTTP 201
+# 1. We expect to get back an HTTP 500
 HTTP/1.1 500
 
 [Asserts]
