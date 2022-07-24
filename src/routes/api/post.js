@@ -28,8 +28,7 @@ module.exports = (req, res) => {
       fragment.setData(req.body)
         .then(() => {
           res.header('Location', location);
-          res.status(201).json(createSuccessResponse({ fragment: fragment }));}
-        
+          res.status(201).json(createSuccessResponse({ fragment: fragment }));}        
         ))
     .then(
       fragment.getData().then((buffer) => {
