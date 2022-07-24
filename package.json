@@ -4,6 +4,7 @@
   "version": "0.8.3",
   "description": "Fragments back-end API",
   "scripts": {
+    "test:integration": "hurl --test --glob \"tests/integration/**/*.hurl\"",
     "test:watch": "jest -c jest.config.js --runInBand --watch --",
     "test": "jest -c jest.config.js --runInBand --",
     "coverage": "jest -c jest.config.js --runInBand --coverage",
@@ -20,6 +21,7 @@
   "author": "Thai Hoa Huynh",
   "license": "UNLICENSED",
   "devDependencies": {
+    "@orangeopensource/hurl": "^1.6.5",
     "cross-env": "^7.0.3",
     "eslint": "^8.15.0",
     "jest": "^28.1.0",
