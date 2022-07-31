@@ -1,6 +1,7 @@
 // src/routes/api/post.js
 const { randomUUID } = require('crypto');
 const { createSuccessResponse } = require('../../../src/response');
+const { createErrorResponse } = require('../../../src/response');
 const Fragment = require('../../model/fragment');
 const hash = require('../../../src/hash');
 
@@ -34,11 +35,17 @@ exports.deleteFragment = (req, res) => {
   const id = req.params.id;
   const user = hash(req.user);
 
-  Fragment.delete(user, id)
-    .then((data) => {
-      // console.log(id);
-      // console.log(data);
-      res.status(200).json(createSuccessResponse({ fragments: data }));
-    })
-    .catch((err) => console.log(err));
+  Fragment.byId(user, id)
+  .then((data) => {
+    if (typeof(data) != 'undefined' && data != null) {
+      Fragment.delete(user, id).then((data) => {
+        res.status(200).json(createSuccessResponse());})
+        .catch((err) => console.log(err));
+    } else {
+      res.status(404).json(createErrorResponse(404, 'not found'));
+    }
+  })
+  .catch((err) => console.log(err));
+
+
 };

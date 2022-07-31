@@ -26,7 +26,11 @@ exports.getFragmentInfo = (req, res) => {
 
   Fragment.byId(user, id)
     .then((data) => {
+      if (typeof(data) != 'undefined' && data != null) {
       res.status(200).json(createSuccessResponse({ fragments: data }));
+      } else {
+        res.status(404).json(createErrorResponse(404, 'not found'));
+      }
     })
     .catch((err) => console.log(err));
 };
