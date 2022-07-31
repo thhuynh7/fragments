@@ -46,6 +46,4 @@ exports.deleteFragment = (req, res) => {
     }
   })
   .catch((err) => console.log(err));
-
-
 };
