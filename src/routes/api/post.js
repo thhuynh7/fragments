@@ -38,7 +38,7 @@ exports.deleteFragment = (req, res) => {
   Fragment.byId(user, id)
   .then((data) => {
     if (typeof(data) != 'undefined' && data != null) {
-      Fragment.delete(user, id).then((data) => {
+      Fragment.delete(user, id).then(() => {
         res.status(200).json(createSuccessResponse());})
         .catch((err) => console.log(err));
     } else {
