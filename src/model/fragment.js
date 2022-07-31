@@ -10,7 +10,7 @@ const {
   readFragmentData,
   writeFragmentData,
   listFragments,
-  // deleteFragment,
+  deleteFragment,
 } = require('./data');
 
 module.exports = class Fragment {
@@ -54,11 +54,12 @@ module.exports = class Fragment {
    * @param {string} id fragment's id
    * @returns Promise
    */
-  // static delete(ownerId, id) {
-  //   // TODO
-  //   // return Promise.resolve(deleteFragment(ownerId, id))
-  //   // .then(() => console.log('fragment deleted')/* ... */);
-  // }
+  static delete(ownerId, id) {
+    // TODO
+    return Promise.resolve(deleteFragment(ownerId, id))
+    .then(() => console.log('fragment deleted'))
+    .catch((err) => console.log(err));
+  }
 
   /**
    * Saves the current fragment to the database

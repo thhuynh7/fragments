@@ -2,8 +2,9 @@
 /**
  * Get a list of fragments for the current user
  */
+
 const { createSuccessResponse } = require('../../../src/response');
-// const { createErrorResponse } = require('../../../src/response');
+const { createErrorResponse } = require('../../../src/response');
 const Fragment = require('../../model/fragment');
 const hash = require('../../hash');
 
@@ -25,8 +26,6 @@ exports.getFragmentInfo = (req, res) => {
 
   Fragment.byId(user, id)
     .then((data) => {
-      console.log(id);
-      console.log(data);
       res.status(200).json(createSuccessResponse({ fragments: data }));
     })
     .catch((err) => console.log(err));
@@ -39,11 +38,14 @@ exports.getFragmentData = (req, res) => {
 
   Fragment.byId(user, id)
     .then((metadata) => {
+      if (typeof(metadata) != 'undefined' && metadata != null) {
       fragment = new Fragment(metadata);
       fragment.getData().then((buffer) => {
         res.header('Content-Type', fragment.type);
         res.status(200).send(buffer);
-      });
+      })} else {
+        res.status(404).json(createErrorResponse(404, 'not found'));
+      }
     })
     .catch((err) => console.log(err));
 };
