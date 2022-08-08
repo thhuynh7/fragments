@@ -14,7 +14,7 @@ exports.postFragment = (req, res) => {
   const type = 'text/plain';
   const size = req.body.toString().length;
 
-  let location = 'http://localhost:8080/v1/fragments/';
+  let location = 'http://fragments-env.eba-qg6zifpm.us-east-1.elasticbeanstalk.com/v1/fragments/';
   location += id;
 
   const fragment = new Fragment({ id, ownerId, created, updated, type, size });
