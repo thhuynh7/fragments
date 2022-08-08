@@ -126,6 +126,6 @@ jobs:
       - name: Build Containers
         run: docker-compose -f docker-compose.offline.yml up -d
       # - name: Setup Local AWS Resources
-        # run: sudo ./scripts/local-aws-setup.sh
+        # run: ./scripts/local-aws-setup.sh
       - name: Run Hurl Tests
         run: npm run test:integration
